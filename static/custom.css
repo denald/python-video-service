@@ -1,0 +1,13 @@
+video{
+    height: 540px;
+}
+
+.video_file {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.video_controls form {
+    display: inline-block;
+}
