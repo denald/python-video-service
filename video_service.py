@@ -4,7 +4,7 @@ import subprocess
 
 from bottle import route, run, template, static_file, redirect
 
-root_folder = "/home/sergey/VideoRecorder/core/video"
+root_folder = "/home/sergey/VideoRecorder/core/video/"
 
 
 @route('/')
