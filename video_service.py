@@ -2,15 +2,24 @@ import logging
 import os
 import subprocess
 
+import bottle
 from bottle import route, run, template, static_file, redirect
 
-root_folder = "/home/sergey/VideoRecorder/core/video/"
+from exception import ConfigurationException
+
+app = bottle.Bottle()
+app.config.load_config('config.ini')
+
+root_folder = app.config['app.root_folder']
+
+if not root_folder:
+    raise ConfigurationException("Root folder can't be empty! Set root_folder value in config.ini file")
 
 
 @route('/')
 def name():
     files = os.listdir(root_folder)
-    return template('index_html', files=files)
+    return template('index', files=files)
 
 
 @route('/play/<filename:path>')
@@ -52,5 +61,5 @@ def convert_to_mp4(filename):
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8080))
+    port = int(os.environ.get('PORT', app.config['app.port']))
     run(host='0.0.0.0', port=port, debug=True, reloader=True)
