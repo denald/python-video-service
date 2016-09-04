@@ -4,27 +4,29 @@ import subprocess
 
 from bottle import route, run, template, static_file, redirect
 
+root_folder = "/home/sergey/VideoRecorder/core/video"
+
 
 @route('/')
 def name():
-    files = os.listdir("/home/sergey/VideoRecorder/core/video")
+    files = os.listdir(root_folder)
     return template('index_html', files=files)
 
 
 @route('/play/<filename:path>')
 def play(filename):
-    return static_file(filename, root='/home/sergey/VideoRecorder/core/video', download=filename)
+    return static_file(filename, root=root_folder, download=filename)
 
 
 @route('/download/<filename:path>')
 def download_file(filename):
-    return static_file(filename, root='/home/sergey/VideoRecorder/core/video', download=True)
+    return static_file(filename, root=root_folder, download=True)
 
 
 @route('/delete/<filename:path>')
 def delete(filename):
     try:
-        os.remove('/home/sergey/VideoRecorder/core/video/{filename}'.format(filename=filename))
+        os.remove(root_folder + "{filename}".format(filename=filename))
     except OSError:
         pass
     redirect("/")
@@ -39,9 +41,9 @@ def static(path):
 def convert_to_mp4(filename):
     command = ['ffmpeg',
                '-y',
-               '-i', '/home/sergey/VideoRecorder/core/video/{}'.format(filename),
+               '-i', root_folder + '{}'.format(filename),
                '-strict', '-2',
-               '/home/sergey/VideoRecorder/core/video/{}'.format(filename.replace('.avi', '.mp4'))]
+               root_folder + '{}'.format(filename.replace('.avi', '.mp4'))]
     logging.warn('Start conversion {} to .mp4 format'.format(filename))
     process = subprocess.Popen(command, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
     err = process.communicate()  # wait until process finished
