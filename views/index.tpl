@@ -19,7 +19,7 @@
     <![endif]-->
   </head>
   <body>
-
+    <a href="/logout">Logout</>
     % include('content.tpl')
 
     <!-- Confirm delete Modal -->

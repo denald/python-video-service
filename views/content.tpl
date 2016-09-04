@@ -7,10 +7,10 @@
             </video>
             %end
             <div class="video_controls">
-                <p><strong>{{item}}</strong></p>
+                <p><strong>{{item}}<strong></p>
                 <form action="/download/{{item}}" method="get">
                         <input type="hidden" name="download" value="True" />
-                        <input type="submit" class="btn btn-primary" value="Download" name="download" id="download_btn" />
+                        <button type="submit" class="btn btn-primary" id="download_btn">Download</button>
                 </form>
 
                 <button class="btn btn-warning" data-href="/delete/{{item}}"
