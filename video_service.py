@@ -73,9 +73,10 @@ def logout():
 
 @route('/')
 @authorize()
+@bottle.view('index')
 def index():
     files = os.listdir(root_folder)
-    return template('index', files=files, admin=is_admin(), user=aaa.current_user)
+    return dict(files=files, admin=is_admin(), user=aaa.current_user)
 
 
 @route('/play/<filename:path>')
@@ -124,5 +125,5 @@ def convert_to_mp4(filename):
 
 if __name__ == '__main__':
     bottle.debug(True)
-    port = int(os.environ.get('PORT', 8080))
+    port = int(os.environ.get('PORT', 8086))
     run(app=app, host='0.0.0.0', port=port, debug=True, reloader=True)
