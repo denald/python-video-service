@@ -9,7 +9,7 @@ from cork import Cork
 
 from exception import ConfigurationException
 
-logging.basicConfig(format='localhost - - [%(asctime)s] %(message)s', level=logging.DEBUG)
+logging.basicConfig(filename='service.log', format='localhost - - [%(asctime)s] %(message)s', level=logging.DEBUG)
 log = logging.getLogger(__name__)
 
 aaa = Cork('conf')
@@ -57,6 +57,7 @@ def login():
     username = post_get('username')
     password = post_get('password')
     aaa.login(username, password, success_redirect='/', fail_redirect='/login')
+    log.debug("User {} logged in".format(username))
 
 
 @bottle.route('/login')
@@ -69,6 +70,7 @@ def login_form():
 @bottle.route('/logout')
 def logout():
     aaa.logout(success_redirect='/login')
+    log.debug("User {} log out".format(aaa.current_user.username))
 
 
 @route('/')
@@ -98,7 +100,9 @@ def delete(filename):
         os.remove(root_folder + "{filename}".format(filename=filename))
     except OSError as e:
         logging.warn(e)
-    redirect("/")
+        raise e
+    log.debug("User {} deleted file {}".format(aaa.current_user.username, filename))
+    redirect('/')
 
 
 @route('/static/:path#.+#', name='static')
@@ -113,10 +117,10 @@ def convert_to_mp4(filename):
                '-i', root_folder + '{}'.format(filename),
                '-strict', '-2',
                root_folder + '{}'.format(filename.replace('.avi', '.mp4'))]
-    logging.warn('Start conversion {} to .mp4 format'.format(filename))
+    log.warn('Start conversion {} to .mp4 format'.format(filename))
     process = subprocess.Popen(command, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
     err = process.communicate()  # wait until process finished
-    logging.warn(err)
+    log.warn(err)
     redirect("/")
 
 
