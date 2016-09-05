@@ -13,10 +13,12 @@
                         <button type="submit" class="btn btn-primary" id="download_btn">Download</button>
                 </form>
 
+                %if admin:
                 <button class="btn btn-warning" data-href="/delete/{{item}}"
                                                 data-toggle="modal" data-target="#confirm-delete">
                     Delete
                 </button>
+                %end
 
                 %if not item.endswith('.mp4'):
                 <form action="/convert/{{item}}" method="get">
@@ -27,5 +29,4 @@
                 %end
             </div>
         </div>
-        <hr>
 % end

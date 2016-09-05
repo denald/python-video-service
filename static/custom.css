@@ -2,9 +2,41 @@ video{
     height: 540px;
 }
 
+.form-horizontal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 30%;
+    height: 30%;
+    margin: auto;
+}
+
+.page-header {
+    padding-top: 10px;
+    margin-top: 0px;
+    background-color: cornsilk;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#user_info {
+    float: left;
+    padding-left: 20px;
+    padding-top: 5px;
+}
+
+div.logout {
+    text-align: right;
+    margin-right: 40px;
+}
+
 .video_file {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 80px;
     margin-bottom: 25px;
 }
 

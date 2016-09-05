@@ -44,6 +44,13 @@ if not root_folder:
     raise ConfigurationException("Root folder can't be empty! Set root_folder value in config.ini file")
 
 
+def is_admin():
+    if aaa.current_user.role == "admin":
+        return True
+
+    return False
+
+
 @bottle.post('/login')
 def login():
     """Authenticate users"""
@@ -64,32 +71,27 @@ def logout():
     aaa.logout(success_redirect='/login')
 
 
-@bottle.route('/user_is_anonymous')
-def user_is_anonymous():
-    if aaa.user_is_anonymous:
-        return 'True'
-
-    return 'False'
-
-
 @route('/')
 @authorize()
 def index():
     files = os.listdir(root_folder)
-    return template('index', files=files)
+    return template('index', files=files, admin=is_admin(), user=aaa.current_user)
 
 
 @route('/play/<filename:path>')
+@authorize()
 def play(filename):
     return static_file(filename, root=root_folder, download=filename)
 
 
 @route('/download/<filename:path>')
+@authorize()
 def download_file(filename):
     return static_file(filename, root=root_folder, download=True)
 
 
 @route('/delete/<filename:path>')
+@authorize(role="admin", fail_redirect="/")
 def delete(filename):
     try:
         os.remove(root_folder + "{filename}".format(filename=filename))
