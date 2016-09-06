@@ -4,4 +4,5 @@ EXPOSE 8086
 
 USER root
 
-CMD [ "python", "video_service.py" ]
+CMD [ "python", "generate_conf.py" ]
+CMD [ "python", "main.py" ]

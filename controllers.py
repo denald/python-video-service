@@ -13,7 +13,7 @@ aaa = Cork('conf')
 authorize = aaa.make_auth_decorator(fail_redirect="/login", role="user")
 
 # Change to read from config file
-root_folder = "/Users/sepi/video/"
+root_folder = "/home/user/video/"
 
 
 # #  Bottle methods  # #
