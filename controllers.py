@@ -75,6 +75,18 @@ def download_file(filename):
     return static_file(filename, root=root_folder, download=True)
 
 
+@route('/upload', method='POST')
+@bottle.view('index')
+def upload_file():
+    data = bottle.request.files.data
+    if data and data.file:
+        data.save(root_folder, overwrite=True)
+
+        filename = data.filename
+        log.debug("File {} successfully uploaded".format(filename))
+    redirect("/")
+
+
 @route('/delete/<filename:path>')
 @authorize(role="admin", fail_redirect="/")
 def delete(filename):

@@ -7,7 +7,9 @@
             </video>
             %end
             <div class="video_controls">
-                <p><strong>{{item}}<strong></p>
+                <p>
+                    <strong>{{item}}</strong>
+                </p>
                 <form action="/download/{{item}}" method="get">
                         <input type="hidden" name="download" value="True" />
                         <button type="submit" class="btn btn-primary" id="download_btn">Download</button>

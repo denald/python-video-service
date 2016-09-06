@@ -30,6 +30,15 @@ video{
     padding-top: 5px;
 }
 
+#upload_form {
+    margin-top: 80px;
+    margin-left: 10px;
+}
+
+.message {
+    margin-top: 70px;
+}
+
 div.logout {
     text-align: right;
     margin-right: 40px;
