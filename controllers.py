@@ -111,6 +111,7 @@ def convert_to_mp4(filename):
                '-i', root_folder + '{}'.format(filename),
                '-strict', '-2',
                root_folder + '{}'.format(filename.replace('.avi', '.mp4'))]
+    log.debug("Execute command {}".format(command))
     log.warn('Start conversion {} to .mp4 format'.format(filename))
     process = subprocess.Popen(command, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
     err = process.communicate()  # wait until process finished
