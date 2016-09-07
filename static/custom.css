@@ -31,8 +31,14 @@ video{
 }
 
 #upload_form {
-    margin-top: 80px;
-    margin-left: 10px;
+    float: left;
+    width: 500px;
+    margin-left:  550px;
+}
+
+#upload_file_input{
+    width: 350px;
+    float: left;
 }
 
 .message {

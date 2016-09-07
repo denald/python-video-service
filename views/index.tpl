@@ -13,6 +13,17 @@
                 <strong>role:</strong> {{role}}
             </span>
         </div>
+        <div id="upload_form">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <div id="upload_file_input">
+                    <input type="file" name="data" class="filestyle" data-icon="false">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-default">Upload</button>
+                </div>
+            </form>
+        </div>
+
         <div class='logout'>
             <a class="btn btn-default" role="button" href="/logout">Logout</a>
         </div>
@@ -21,13 +32,6 @@
     %if defined('message') and message:
         <div class="message">{{message}}</div>
     %else:
-
-    <div id="upload_form">
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="data" />
-            <button type="submit">Upload</button>
-        </form>
-    </div>
 
     %include('content.tpl')
 
