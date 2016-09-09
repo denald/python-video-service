@@ -43,7 +43,7 @@ def login():
 
 
 @bottle.route('/login')
-@bottle.view('login_form')
+@bottle.view('login')
 def login_form():
     """Serve login form"""
     return {}
