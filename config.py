@@ -8,7 +8,7 @@ from os.path import expanduser
 
 from cork import Cork
 
-root_folder = os.path.join(expanduser("~"), 'video')
+root_folder = os.path.join(expanduser("~"), 'video') + "/"
 
 
 def create_users():
