@@ -13,19 +13,18 @@
                 <strong>role:</strong> {{role}}
             </span>
         </div>
-        <div id="upload_form">
-            <form action="/upload" method="post" enctype="multipart/form-data">
-                <div id="upload_file_input">
-                    <input type="file" name="data" class="filestyle" data-icon="false">
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-default">Upload</button>
-                </div>
-            </form>
-        </div>
-
-        <div class='logout'>
-            <a class="btn btn-default" role="button" href="/logout">Logout</a>
+        <div class="header_controls">
+            <div id="upload_form">
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <div id="upload_file_controls">
+                        <input type="file" name="data" class="filestyle" data-icon="false">
+                        <button type="submit" class="btn btn-default">Upload</button>
+                    </div>
+                </form>
+            </div>
+            <div class='logout'>
+               <a class="btn btn-default" role="button" href="/logout">Logout</a>
+            </div>
         </div>
     </div>
 
