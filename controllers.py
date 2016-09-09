@@ -18,10 +18,6 @@ root_folder = "/Users/sepi/video/"
 
 # #  Bottle methods  # #
 
-def postd():
-    return bottle.request.forms
-
-
 def post_get(name, default=''):
     return bottle.request.POST.get(name, default).strip()
 
@@ -33,16 +29,20 @@ def is_admin():
     return False
 
 
-@bottle.post('/login')
+main_page = "/index"
+login_page = "/login"
+
+
+@bottle.post(login_page)
 def login():
     """Authenticate users"""
     username = post_get('username')
     password = post_get('password')
-    aaa.login(username, password, success_redirect='/', fail_redirect='/login')
+    aaa.login(username, password, success_redirect=main_page, fail_redirect=login_page)
     log.debug("User {} logged in".format(username))
 
 
-@bottle.route('/login')
+@bottle.route(login_page)
 @bottle.view('login')
 def login_form():
     """Serve login form"""
@@ -51,12 +51,12 @@ def login_form():
 
 @bottle.route('/logout')
 def logout():
-    aaa.logout(success_redirect='/login')
+    aaa.logout(success_redirect=login_page)
     log.debug("User {} log out".format(aaa.current_user.username))
 
 
-@route('/')
 @authorize()
+@route(main_page)
 @bottle.view('index')
 def index():
     files = os.listdir(root_folder)
@@ -84,7 +84,7 @@ def upload_file():
 
         filename = data.filename
         log.debug("File {} successfully uploaded".format(filename))
-    redirect("/")
+    redirect(main_page)
 
 
 @route("/admin")
@@ -112,7 +112,7 @@ def delete(filename):
         logging.warn(e)
         raise e
     log.debug("User {} deleted file {}".format(aaa.current_user.username, filename))
-    redirect('/')
+    redirect(main_page)
 
 
 @route('/static/:path#.+#', name='static')
