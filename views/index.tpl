@@ -36,18 +36,20 @@
     <!-- Nav finish-->
 
     <div class="container">
+    <div class="row">
         <div class="upload_controls">
-             <div id="upload_form">
+             <div id="upload_form" class="col-md-10 pull-right">
                   <form action="/upload" method="post" enctype="multipart/form-data">
-                         <div id="upload_file_controls">
+                         <div id="upload_file_controls" class="col-md-8">
                              <input type="file" name="data" class="filestyle" data-icon="false">
                          </div>
-                         <div id='upload_submit'>
+                         <div id='upload_submit' class="col-md-4">
                              <button type="submit" class="btn btn-default">Upload</button>
                          </div>
                   </form>
               </div>
         </div>
+    </div>
         % for item in files:
         <div class='video_file'>
             %if item.endswith('.mp4'):

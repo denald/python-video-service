@@ -6,8 +6,10 @@
 from datetime import datetime
 from cork import Cork
 
+root_folder = "/home/sergey/video/"
 
-def populate_conf_directory():
+
+def create_users():
     cork = Cork('conf', initialize=True)
 
     cork._store.roles['admin'] = 100
@@ -36,4 +38,4 @@ def populate_conf_directory():
 
 
 if __name__ == '__main__':
-    populate_conf_directory()
+    create_users()

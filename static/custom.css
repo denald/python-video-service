@@ -40,15 +40,15 @@ video{
     padding: 0px;
 }
 
-#upload_file_controls{
-    padding-right: 5px;
+#upload_file_controls {
+    width: 500px;
+    padding-left: 170px;
 }
 
 div.upload_controls{
     padding-left: 0;
     padding-right: 0;
     padding-top: 10px;
-    width: 400px;
 }
 
 .video_file {

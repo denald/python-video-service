@@ -3,6 +3,7 @@ import os
 import subprocess
 
 import bottle
+import config
 from bottle import route, static_file, redirect
 from cork import Cork
 
@@ -11,9 +12,6 @@ log = logging.getLogger(__name__)
 
 aaa = Cork('conf')
 authorize = aaa.make_auth_decorator(fail_redirect="/login", role="user")
-
-# Change to read from config file
-root_folder = "/Users/sepi/video/"
 
 
 # #  Bottle methods  # #
@@ -42,6 +40,7 @@ def login():
     log.debug("User {} logged in".format(username))
 
 
+@bottle.route("/")
 @bottle.route(login_page)
 @bottle.view('login')
 def login_form():
@@ -59,20 +58,20 @@ def logout():
 @route(main_page)
 @bottle.view('index')
 def index():
-    files = os.listdir(root_folder)
+    files = os.listdir(config.root_folder)
     return dict(files=files, admin=is_admin(), user=aaa.current_user)
 
 
 @route('/play/<filename:path>')
 @authorize()
 def play(filename):
-    return static_file(filename, root=root_folder, download=filename)
+    return static_file(filename, root=config.root_folder, download=filename)
 
 
 @route('/download/<filename:path>')
 @authorize()
 def download_file(filename):
-    return static_file(filename, root=root_folder, download=True)
+    return static_file(filename, root=config.root_folder, download=True)
 
 
 @route('/upload', method='POST')
@@ -80,7 +79,7 @@ def download_file(filename):
 def upload_file():
     data = bottle.request.files.data
     if data and data.file:
-        data.save(root_folder, overwrite=True)
+        data.save(config.root_folder, overwrite=True)
 
         filename = data.filename
         log.debug("File {} successfully uploaded".format(filename))
@@ -100,14 +99,14 @@ def add_user():
     password = post_get('password')
     aaa.create_user(username=username, password=password, role="user")
     logging.warning("User {} with password {} added".format(username, password))
-    redirect("/admin")
+    redirect(main_page)
 
 
 @route('/delete/<filename:path>')
 @authorize(role="admin", fail_redirect="/")
 def delete(filename):
     try:
-        os.remove(root_folder + "{filename}".format(filename=filename))
+        os.remove(config.root_folder + "{filename}".format(filename=filename))
     except OSError as e:
         logging.warn(e)
         raise e
@@ -124,9 +123,9 @@ def static(path):
 def convert_to_mp4(filename):
     command = ['ffmpeg',
                '-y',
-               '-i', root_folder + '{}'.format(filename),
+               '-i', config.root_folder + '{}'.format(filename),
                '-strict', '-2',
-               root_folder + '{}'.format(filename.replace('.avi', '.mp4'))]
+               config.root_folder + '{}'.format(filename.replace('.avi', '.mp4'))]
     log.debug("Execute command {}".format(command))
     log.warn('Start conversion {} to .mp4 format'.format(filename))
     process = subprocess.Popen(command, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
