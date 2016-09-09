@@ -2,7 +2,7 @@ video{
     height: 540px;
 }
 
-.form-horizontal {
+.login_form {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -30,14 +30,8 @@ video{
     padding-top: 5px;
 }
 
-#upload_form {
-    float: left;
-    width: 350px;
-    margin-left:  550px;
-}
-
 #upload_file_controls{
-    display: flex;
+    width: 350px;
 }
 
 .message {
@@ -45,8 +39,11 @@ video{
 }
 
 div.logout {
-    text-align: right;
-    margin-right: 40px;
+    margin-right: 30px;
+}
+
+#upload_submit{
+    padding-left: 0px;
 }
 
 .video_file {

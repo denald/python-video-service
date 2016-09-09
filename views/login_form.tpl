@@ -1,7 +1,7 @@
 %rebase layout title = "Login"
 
   <div id="parent">
-    <form class="form-horizontal" action="login" method="post" name="login" autocomplete="off">
+    <form class="form-horizontal login_form" action="login" method="post" name="login" autocomplete="off">
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
             <div class="col-sm-10">
