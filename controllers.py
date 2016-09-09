@@ -13,7 +13,7 @@ aaa = Cork('conf')
 authorize = aaa.make_auth_decorator(fail_redirect="/login", role="user")
 
 # Change to read from config file
-root_folder = "/video/"
+root_folder = "/Users/sepi/video/"
 
 
 # #  Bottle methods  # #
@@ -85,6 +85,22 @@ def upload_file():
         filename = data.filename
         log.debug("File {} successfully uploaded".format(filename))
     redirect("/")
+
+
+@route("/admin")
+@bottle.view('admin')
+def admin_page():
+    return {}
+
+
+@bottle.post("/user/add")
+@authorize(role="admin")
+def add_user():
+    username = post_get('username')
+    password = post_get('password')
+    aaa.create_user(username=username, password=password, role="user")
+    logging.warning("User {} with password {} added".format(username, password))
+    redirect("/admin")
 
 
 @route('/delete/<filename:path>')
