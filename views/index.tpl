@@ -1,41 +1,36 @@
 %rebase layout title='Index'
 
-        <div class="page-header col-md-12">
-        <%
-            username = user.username
-            role = user.role
-        %>
-        <div id="user_info " class="col-md-3 pull-left">
-            <span>
-                <strong>username:</strong> {{username}}
-            </span>
-            <span>
-                <strong>role:</strong> {{role}}
-            </span>
+<div class="container-fluid">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Video service</a>
         </div>
-        <div class="header_controls col-md-7 pull-right">
-            <div id="upload_form" class="col-md-10">
-                <form action="/upload" method="post" enctype="multipart/form-data">
-                    <div class="">
-                        <div id="upload_file_controls" class="col-md-10">
-                            <input type="file" name="data" class="filestyle" data-icon="false">
-                        </div>
-                        <div id='upload_submit' class="col-md-2">
-                            <button type="submit" class="btn btn-default">Upload</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="logout pull-right col-md-1">
-                <a class="btn btn-default" role="button" href="/logout">Logout</a>
-            </div>
-        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="user_info">
+                <span>username: <strong>{{user.username}}</strong></span>
+                <span>role: <strong>{{user.role}}</strong></span>
+            </li>
+            <li>
+                <a href="/logout">Logout</a>
+            </li>
 
-    %if defined('message') and message:
-        <div class="message">{{message}}</div>
-    %else:
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
-    %include('content.tpl')
+</div>
 
-    %include('modal.tpl')
 
