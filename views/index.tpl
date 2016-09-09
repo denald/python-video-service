@@ -11,11 +11,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Video service</a>
+          <a class="navbar-brand" href="/index">Video service</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
+            <li><a href="/index">Home</a></li>
+            %if admin:
+            <li><a href="/manage">Manage</a></li>
+            %end
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="user_info">
@@ -33,6 +36,18 @@
     <!-- Nav finish-->
 
     <div class="container">
+        <div class="upload_controls">
+             <div id="upload_form">
+                  <form action="/upload" method="post" enctype="multipart/form-data">
+                         <div id="upload_file_controls">
+                             <input type="file" name="data" class="filestyle" data-icon="false">
+                         </div>
+                         <div id='upload_submit'>
+                             <button type="submit" class="btn btn-default">Upload</button>
+                         </div>
+                  </form>
+              </div>
+        </div>
         % for item in files:
         <div class='video_file'>
             %if item.endswith('.mp4'):

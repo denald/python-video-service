@@ -32,10 +32,29 @@ video{
     z-index: 100;
 }
 
+#upload_form {
+    margin-top: 60px;
+}
+
+#upload_submit , #upload_file_controls{
+    padding: 0px;
+}
+
+#upload_file_controls{
+    padding-right: 5px;
+}
+
+div.upload_controls{
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 10px;
+    width: 400px;
+}
+
 .video_file {
     text-align: center;
-    margin-top: 80px;
     margin-bottom: 25px;
+    padding-top: 25px;
 }
 
 .video_controls form {
