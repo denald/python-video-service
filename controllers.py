@@ -88,7 +88,7 @@ def upload_file():
 
 @route("/users")
 @bottle.view('users')
-@authorize(role="admin", fail_redirect="/")
+@authorize(role="admin", fail_redirect="/index")
 def users_page():
     return dict(admin=is_admin(), user=aaa.current_user, users=aaa.list_users())
 
