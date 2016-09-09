@@ -1,5 +1,5 @@
 %rebase layout title = "Login"
-
+<div class="site-wrapper">
   <div id="parent">
     <form class="form-horizontal login_form" action="login" method="post" name="login" autocomplete="off">
           <div class="form-group">
@@ -21,7 +21,7 @@
           </div>
     </form>
   </div>
-
+</div>
 
 
 

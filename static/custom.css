@@ -1,3 +1,13 @@
+.site-wrapper {
+    display: table;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+        background-color: #333;
+}
+
 video{
     height: 540px;
 }
@@ -59,4 +69,8 @@ div.upload_controls{
 
 .video_controls form {
     display: inline-block;
+}
+
+.table {
+    margin-top: 75px;
 }

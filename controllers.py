@@ -54,9 +54,9 @@ def logout():
     log.debug("User {} log out".format(aaa.current_user.username))
 
 
-@authorize()
 @route(main_page)
 @bottle.view('index')
+@authorize()
 def index():
     files = os.listdir(config.root_folder)
     return dict(files=files, admin=is_admin(), user=aaa.current_user)
@@ -86,14 +86,15 @@ def upload_file():
     redirect(main_page)
 
 
-@route("/admin")
-@bottle.view('admin')
-def admin_page():
-    return {}
+@route("/users")
+@bottle.view('users')
+@authorize(role="admin", fail_redirect="/")
+def users_page():
+    return dict(admin=is_admin(), user=aaa.current_user, users=aaa.list_users())
 
 
 @bottle.post("/user/add")
-@authorize(role="admin")
+@authorize(role="admin", fail_redirect="/")
 def add_user():
     username = post_get('username')
     password = post_get('password')
