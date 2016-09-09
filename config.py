@@ -2,11 +2,13 @@
 #
 #
 # Regenerate files in conf
-
+import os
 from datetime import datetime
+from os.path import expanduser
+
 from cork import Cork
 
-root_folder = "/home/sergey/video/"
+root_folder = os.path.join(expanduser("~"), 'video')
 
 
 def create_users():
