@@ -74,3 +74,8 @@ div.upload_controls{
 .table {
     margin-top: 75px;
 }
+
+#add_user {
+    margin-top: 85px;
+    width: 560px;
+}

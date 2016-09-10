@@ -98,9 +98,10 @@ def users_page():
 def add_user():
     username = post_get('username')
     password = post_get('password')
-    aaa.create_user(username=username, password=password, role="user")
+    email = post_get("email")
+    aaa.create_user(username=username, password=password, email_addr=email, role="user")
     logging.warning("User {} with password {} added".format(username, password))
-    redirect(main_page)
+    redirect("/users")
 
 
 @route('/delete/<filename:path>')
