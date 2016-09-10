@@ -133,4 +133,4 @@ def convert_to_mp4(filename):
     process = subprocess.Popen(command, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
     err = process.communicate()  # wait until process finished
     log.warn(err)
-    redirect("/")
+    redirect("/index")

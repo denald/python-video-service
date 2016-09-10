@@ -71,6 +71,10 @@ div.upload_controls{
     display: inline-block;
 }
 
+.row{
+    margin-bottom: 25px;
+}
+
 .table {
     margin-top: 75px;
 }

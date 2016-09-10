@@ -2,11 +2,19 @@
 #
 #
 # Regenerate files in conf
+import logging
+import os
 from datetime import datetime
 
 from cork import Cork
 
-root_folder = "/video"
+root_folder = os.path.expanduser("~") + "/video/"
+
+
+def create_root_folder():
+    if not os.path.exists(root_folder):
+        os.mkdir(root_folder)
+    logging.warning("Video folder created at {}".format(root_folder))
 
 
 def create_users():
