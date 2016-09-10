@@ -7,7 +7,7 @@
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
             <div class="col-sm-10">
-              <input name="username" class="form-control" id="inputEmail3" placeholder="Email">
+              <input name="username" class="form-control" id="inputEmail3" placeholder="Username">
             </div>
           </div>
           <div class="form-group">
@@ -17,9 +17,9 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Email</label>
+            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
-              <input type="email" name="email" class="form-control" id="inputPassword3" placeholder="Password">
+              <input type="email" name="email" class="form-control" id="inputPassword3" placeholder="Email">
             </div>
           </div>
           <div class="form-group">
