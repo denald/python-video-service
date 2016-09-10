@@ -79,6 +79,18 @@ div.upload_controls{
     margin-top: 75px;
 }
 
+.accordion-panel{
+    margin-top: 10px;
+}
+
+span.download{
+    padding:0;
+}
+
+#delete_item{
+    width: 8.333333333%;
+}
+
 #add_user {
     margin-top: 85px;
     width: 560px;

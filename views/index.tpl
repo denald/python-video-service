@@ -23,9 +23,21 @@
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#{{index}}">{{item}}</a>
+                    <h4 class="panel-title col-md-10 accordion-panel">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#{{index}}"><strong>{{item}}</strong></a>
                     </h4>
+                    <span class="download col-md-1">
+                        <form action="/download/{{item}}" method="get">
+                             <input type="hidden" name="download" value="True" />
+                             <button type="submit" class="btn btn-primary btn-sm" id="download_btn">Download</button>
+                        </form>
+                    </span>
+                    %if admin:
+                         <button id="delete_item" class="btn btn-danger btn-sm" data-href="/delete/{{item}}"
+                                                                data-toggle="modal" data-target="#confirm-delete">
+                                    Delete
+                          </button>
+                    %end
                 </div>
                 <div id="{{index}}" class="panel-collapse collapse">
                     <div class="panel-body">
@@ -40,20 +52,8 @@
                                 <p>
                                     <strong>{{item}}</strong>
                                 </p>
-                                <form action="/download/{{item}}" method="get">
-                                        <input type="hidden" name="download" value="True" />
-                                        <button type="submit" class="btn btn-primary" id="download_btn">Download</button>
-                                </form>
-
-                                %if admin:
-                                <button class="btn btn-warning" data-href="/delete/{{item}}"
-                                                                data-toggle="modal" data-target="#confirm-delete">
-                                    Delete
-                                </button>
-                                %end
-
                                 %if not item.endswith('.mp4'):
-                                <form action="/convert/{{item}}" method="get">
+                                <form name="convert" action="/convert/{{item}}" method="get">
                                         <button type="submit" class="btn btn-danger" name="convert" id="convert_btn"
                                          data-toggle="popover"
                                          title="Conversion" data-content="This video is convering now">Convert to MP4</button>
