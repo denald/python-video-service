@@ -32,12 +32,10 @@
                              <button type="submit" class="btn btn-primary btn-sm" id="download_btn">Download</button>
                         </form>
                     </span>
-                    %if admin:
                          <button id="delete_item" class="btn btn-danger btn-sm" data-href="/delete/{{item}}"
                                                                 data-toggle="modal" data-target="#confirm-delete">
                                     Delete
                           </button>
-                    %end
                 </div>
                 <div id="{{index}}" class="panel-collapse collapse">
                     <div class="panel-body">
