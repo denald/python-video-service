@@ -19,8 +19,6 @@ USER root
 
 WORKDIR /home/root/
 
-RUN mkdir video/
-
 COPY . /home/root
 
 RUN pip install --no-cache-dir -r requirements.txt
